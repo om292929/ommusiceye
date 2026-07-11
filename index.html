@@ -3,557 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ommusiceye | Premium Audio Ecosystem</title>
-    
-    <!-- Premium UI Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>ommusiceye | Premium Audio Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CORE SYSTEM VARIABLE GLOWS */
-        :root {
-            --bg-deep: #030306;
-            --surface-glass: rgba(10, 10, 16, 0.5);
-            --surface-glass-active: rgba(20, 20, 30, 0.75);
-            --border-glow: rgba(46, 204, 113, 0.15);
-            --border-line: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff;
-            --text-muted: #8a8da4;
-            --neon-green: #2ecc71;
-            --neon-gold: #f1c40f;
-            --neon-green-glow: rgba(46, 204, 113, 0.35);
-            --neon-gold-glow: rgba(241, 196, 15, 0.45);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
             min-height: 100vh;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* DYNAMIC BACKGROUND AMBIENCE ANIMATION */
-        .ambient-matrix {
+        /* LEFT SIDEBAR */
+        .sidebar {
+            width: 320px;
+            background-color: #000000;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 2px solid rgba(255, 193, 7, 0.2);
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
             height: 100vh;
-            z-index: -2;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #080912 0%, var(--bg-deep) 100%);
+            z-index: 10;
         }
 
-        .ambient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.12;
-            mix-blend-mode: screen;
-            animation: floatOrb 25s infinite alternate ease-in-out;
-        }
-        .orb-1 { width: 500px; height: 500px; background: var(--neon-green); top: -10%; left: -10%; }
-        .orb-2 { width: 600px; height: 600px; background: var(--neon-gold); bottom: -15%; right: -5%; animation-delay: -5s; }
-
-        @keyframes floatOrb {
-            0% { transform: translateY(0) scale(1) rotate(0deg); }
-            50% { transform: translateY(40px) scale(1.1) rotate(180deg); }
-            100% { transform: translateY(-20px) scale(0.9) rotate(360deg); }
-        }
-
-        /* STICKY GLASSMORPHISM HEADER */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 20px 8%;
+        /* LOGO CONTAINER WITH 360° ROTATION */
+        .logo-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(3, 3, 6, 0.7);
-            border-bottom: 1px solid var(--border-line);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            gap: 12px;
+            border: 2px solid #FFC107;
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.25);
+            margin-bottom: 40px;
+            background: rgba(255, 193, 7, 0.02);
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.7rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            cursor: pointer;
-        }
-        .logo span { color: var(--neon-green); text-shadow: 0 0 15px var(--neon-green-glow); }
-
-        /* ADVANCED TRANSITION PAGES NAV BAR */
-        nav {
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 6px;
-            border-radius: 30px;
-            border: 1px solid var(--border-line);
+        .logo-area {
+            font-size: 22px;
+            font-weight: 900;
+            color: #FFC107;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        .nav-link {
-            padding: 8px 22px;
-            color: var(--text-muted);
+        /* 360 Degree Spinning Logo Icon */
+        .spinning-logo {
+            font-size: 24px;
+            color: #FFC107;
+            animation: spin360 4s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+
+        .sidebar-widget {
+            background: #181818;
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-widget:hover {
+            border: 1px solid rgba(255, 193, 7, 0.4);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #a3a3a3;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366 0%, #1cbd57 100%);
+            color: white;
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 14px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .nav-link.active, .nav-link:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
-        }
-        .nav-link.active {
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            color: var(--neon-green);
+        .whatsapp-btn:hover {
+            transform: scale(1.03);
         }
 
-        /* DEEP MULTI-PAGE VIEW CONTROLLER ARCHITECTURE */
-        .page-view {
-            display: none;
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 60px 8% 100px 8%;
-            min-height: 80vh;
+        .qr-container img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 12px;
+            object-fit: contain;
+            background: white; /* Agaye background clear dikhe */
         }
 
-        .page-view.active-page {
-            display: block;
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        /* MAIN CONTENT AREA - SMOOTH BLENDED GRADIENT (BLUE TO BLACK) */
+        .main-content {
+            margin-left: 320px;
+            flex: 1;
+            padding: 50px;
+            background: linear-gradient(transparent, #121212 55%), #1d3557; 
+            background-attachment: fixed;
         }
 
-        /* PAGE 1: HOME PAGE DESIGNS */
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+        .showcase-container {
+            max-width: 950px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* TRACK HERO SECTION */
+        .track-hero {
+            display: flex;
+            gap: 40px;
             align-items: center;
-            gap: 60px;
+            background: rgba(24, 24, 24, 0.85);
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        .hero-text h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 4.5rem;
-            line-height: 1.05;
-            margin-bottom: 24px;
+        .img-wrapper {
+            position: relative;
+            border-radius: 16px;
+            padding: 6px;
+            background: linear-gradient(135deg, #FFC107, #1d3557);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .img-wrapper:hover {
+            transform: scale(1.04) rotate(-1deg);
+        }
+
+        .track-img {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .track-details h4 {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: #FFC107;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .track-details h1 {
+            font-size: 46px;
             font-weight: 800;
-            letter-spacing: -1.5px;
-        }
-
-        .hero-text h1 span {
-            background: linear-gradient(135deg, var(--neon-gold), var(--neon-green));
+            margin-bottom: 15px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 580px;
+        .divider-line {
+            height: 3px;
+            width: 100px;
+            background: linear-gradient(90deg, #FFC107, transparent);
+            margin: 18px 0;
+            border-radius: 2px;
         }
 
-        /* CTA Interaction Core Button */
-        .cta-btn {
-            display: inline-flex;
+        /* CUSTOM DARK YELLOW AUDIO PLAYER */
+        .audio-player-box {
+            background: rgba(24, 24, 24, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 32px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .player-header {
+            display: flex;
             align-items: center;
             gap: 12px;
-            background: linear-gradient(135deg, rgba(46,204,113,0.15), rgba(46,204,113,0.03));
-            border: 1px solid var(--neon-green);
-            color: var(--text-main);
-            padding: 16px 36px;
-            border-radius: 30px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.1);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-4px);
-            background: var(--neon-green);
-            color: var(--bg-deep);
-            box-shadow: 0 15px 35px var(--neon-green-glow);
-        }
-
-        .hero-img-box {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-avatar {
-            width: 100%;
-            max-width: 380px;
-            height: 480px;
-            border-radius: 28px;
-            object-fit: cover;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-            animation: dynamicFloat 6s ease-in-out infinite;
-        }
-
-        @keyframes dynamicFloat {
-            0%, 100% { transform: translateY(0px) rotate(1deg); }
-            50% { transform: translateY(-15px) rotate(-1deg); box-shadow: 0 50px 90px rgba(46, 204, 113, 0.15); }
-        }
-
-        /* PAGE 2: STUDIO WORK SHOWCASE SLIDER */
-        .slider-wrapper {
-            position: relative;
-            max-width: 900px;
-            margin: 40px auto 0 auto;
-        }
-
-        .slider-viewport {
-            overflow: hidden;
-            border-radius: 28px;
-            background: var(--surface-glass);
-            border: 1px solid var(--border-line);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.7);
-        }
-
-        .track-strip {
-            display: flex;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .audio-slide {
-            min-width: 100%;
-            padding: 70px 60px;
-            position: relative;
-        }
-
-        .slide-meta {
-            color: var(--neon-green);
-            font-family: 'Syne', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 14px;
-            display: block;
-        }
-
-        .audio-slide h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 700;
             margin-bottom: 18px;
-            letter-spacing: -0.5px;
-            max-width: 65%;
-        }
-
-        .audio-slide p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            max-width: 650px;
-        }
-
-        /* THE PREMIUM SHWETA GOLD GLOW BADGE */
-        .shweta-badge {
-            position: absolute;
-            top: 45px;
-            right: 60px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            color: #FFC107;
+            font-weight: bold;
+            font-size: 15px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--neon-gold);
-            background: rgba(241, 196, 15, 0.06);
-            padding: 8px 20px;
-            border-radius: 40px;
-            border: 1px solid rgba(241, 196, 15, 0.3);
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.1);
-            animation: goldPulse 2.5s infinite alternate ease-in-out;
-        }
-
-        @keyframes goldPulse {
-            0% { box-shadow: 0 0 15px rgba(241, 196, 15, 0.1); border-color: rgba(241, 196, 15, 0.2); }
-            100% { box-shadow: 0 0 35px var(--neon-gold-glow); border-color: var(--neon-gold); }
-        }
-
-        /* CUSTOM DAW WAVEFORM STYLING ENVIRONMENT */
-        .audio-player-module {
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255,255,255,0.03);
-            padding: 24px;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .audio-player-module::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 10%; right: 10%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
-            opacity: 0.3;
+            letter-spacing: 1.5px;
         }
 
         audio {
             width: 100%;
-            display: block;
-            accent-color: var(--neon-green);
+            height: 56px;
+            border-radius: 30px;
+            background-color: #1a1a1a;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background-color: #181818;
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-mute-button,
+        audio::-webkit-media-controls-timeline,
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display,
+        audio::-webkit-media-controls-volume-slider {
+            filter: invert(80%) sepia(50%) saturate(2000%) hue-rotate(5deg) brightness(105%) contrast(105%);
         }
 
-        /* PREMIUM SLIDER INTERACTIVE CONTROLS */
-        .control-arrow {
+        /* PRICING & LICENSING CARD */
+        .pricing-card {
+            background: rgba(24, 24, 24, 0.85);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            animation: fadeInUp 1.2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(10, 10, 16, 0.9);
-            border: 1px solid var(--border-line);
-            color: var(--text-main);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFC107, #1d3557);
+        }
+
+        .price-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .price-tag {
+            font-size: 46px;
+            font-weight: 900;
+            color: #FFC107;
+            text-shadow: 0 0 25px rgba(255, 193, 7, 0.3);
+        }
+
+        .license-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .license-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .license-features li {
             display: flex;
             align-items: center;
+            gap: 14px;
+            color: #cbd5e1;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .license-features li:hover {
+            transform: translateX(6px);
+            color: #ffffff;
+        }
+
+        .license-features i {
+            color: #FFC107;
+            font-size: 18px;
+        }
+
+        /* SOCIAL LOGOS BOX */
+        .social-licensing-logos {
+            display: flex;
+            gap: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 30px;
+            border-radius: 14px;
+            align-items: center;
             justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .social-licensing-logos p {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .social-licensing-logos i {
+            font-size: 24px;
+            color: #94a3b8;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .control-arrow:hover {
-            border-color: var(--neon-green);
-            background: var(--neon-green);
-            color: var(--bg-deep);
-            box-shadow: 0 0 30px var(--neon-green-glow);
+        .social-licensing-logos i:hover {
+            color: #FFC107;
+            transform: scale(1.25);
         }
 
-        .arrow-left { left: -30px; }
-        .arrow-right { right: -30px; }
-
-        /* PAGE 3: STUDIO LAB MAP SECTION */
-        .section-headline {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.8rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-headline span { color: var(--neon-green); }
-
-        .map-wrapper-box {
-            max-width: 950px;
-            margin: 0 auto;
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid var(--border-line);
-            box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+        /* ANIMATIONS DEFINITIONS */
+        @keyframes spin360 {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        iframe {
-            width: 100%;
-            height: 450px;
-            border: 0;
-            display: block;
-            filter: grayscale(1) invert(0.95) contrast(1.05); /* Cyber matrix visual finish */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* FOOTER DESIGN */
-        footer {
-            text-align: center;
-            padding: 40px;
-            margin-top: auto;
-            border-top: 1px solid var(--border-line);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* RESPONSIVE LAYOUT MATRIX */
-        @media (max-width: 960px) {
-            .hero-layout { grid-template-columns: 1fr; text-align: center; justify-content: center; gap: 40px; }
-            .hero-text h1 { font-size: 3.2rem; }
-            .hero-text p { margin: 0 auto 30px auto; }
-            .control-arrow { display: none; } /* Adaptive swipe logic simulation */
-            .audio-slide { padding: 50px 30px; }
-            .shweta-badge { position: static; display: inline-block; margin-bottom: 20px; }
-            .audio-slide h2 { max-width: 100%; text-align: center; }
-            header { flex-direction: column; gap: 20px; padding: 20px; }
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 2px solid rgba(255, 193, 7, 0.2);
+                padding: 30px 20px;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 24px;
+            }
+            .track-hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .track-img {
+                width: 220px;
+                height: 220px;
+                margin: 0 auto;
+            }
+            .track-details h1 {
+                font-size: 34px;
+            }
+            .divider-line {
+                margin: 18px auto;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- MATRIX BG LAYER -->
-    <div class="ambient-matrix">
-        <div class="ambient-orb orb-1"></div>
-        <div class="ambient-orb orb-2"></div>
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+        <!-- Brand Logo with Continuous 360° Rotating Disc Icon -->
+        <div class="logo-container">
+            <i class="fas fa-compact-disc spinning-logo"></i>
+            <div class="logo-area">ommusiceye</div>
+        </div>
+        
+        <!-- WhatsApp Connect Widget -->
+        <div class="sidebar-widget">
+            <h3>Direct Order</h3>
+            <a href="https://wa.me/917031312989?text=Hi%20Om,%20I%20want%20to%20buy%20Shweta%20Custom%20Song" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+
+        <!-- Google Pay QR Widget -->
+        <div class="sidebar-widget">
+            <h3>Scan & Pay via GPay</h3>
+            <div class="qr-container">
+                <!-- CORRECTED TO .jpeg EXTENSION HERE -->
+                <img src="qr-code.jpeg" alt="Google Pay QR">
+                <p style="font-size: 12px; color: #a3a3a3; font-weight: 500;">Pay ₹3,200 & send screenshot</p>
+            </div>
+        </div>
     </div>
 
-    <!-- HEADER NAVIGATION ARCHITECTURE -->
-    <header>
-        <div class="logo" onclick="switchPage('home')">ommusic<span>eye</span></div>
-        <nav>
-            <div class="nav-link active" id="btn-home" onclick="switchPage('home')">Home</div>
-            <div class="nav-link" id="btn-portfolio" onclick="switchPage('portfolio')">Portfolio Showcase</div>
-            <div class="nav-link" id="btn-studio" onclick="switchPage('studio')">Studio HQ</div>
-        </nav>
-    </header>
-
-    <!-- PAGE 1: HOME VIEW -->
-    <section id="page-home" class="page-view active-page">
-        <div class="hero-layout">
-            <div class="hero-text">
-                <h1>Hi, I'm <span>Om</span></h1>
-                <p>Welcome to the official ecosystem of <strong>ommusiceye</strong>. A premium catalog engineered around cutting-edge sound spaces, progressive audio production, custom mixing layers, and abstract electronic modular beats.</p>
-                <button class="cta-btn" onclick="switchPage('portfolio')">
-                    Explore Sound Stage
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-            </div>
-            <div class="hero-img-box">
-                <img src="om-photo.jpeg" alt="Om Studio Station Setup" class="hero-avatar">
-            </div>
-        </div>
-    </section>
-
-    <!-- PAGE 2: PORTFOLIO AUDIO SLIDER VIEW -->
-    <section id="page-portfolio" class="page-view">
-        <h2 class="section-headline">Showcase <span>Portfolio</span></h2>
-        
-        <div class="slider-wrapper">
-            <!-- Navigation System Arrows -->
-            <button class="control-arrow arrow-left" onclick="moveSlide(-1)" aria-label="Previous Track">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="control-arrow arrow-right" onclick="moveSlide(1)" aria-label="Next Track">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 5l6 6-6 6"/></svg>
-            </button>
-
-            <div class="slider-viewport">
-                <div class="track-strip" id="slideTrack">
-                    
-                    <!-- SLIDE 1 (Premium Shweta Badge Configured) -->
-                    <div class="audio-slide">
-                        <span class="shweta-badge">Shweta Sample Song</span>
-                        <span class="slide-meta">01 // Identity</span>
-                        <h2>Signature Sound</h2>
-                        <p>The flagship structural audio layout establishing the visual sound design standard of ommusiceye.</p>
-                        <div class="audio-player-module">
-                            <audio controls><source src="track1.mp4" type="audio/mp4"></audio>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 2 -->
-                    <div class="audio-slide">
-                        <span class="slide-meta">02 // Deep Atmospheric</span>
-                        <h2>Ambient Vibes</h2>
-                        <p>Textured low-fidelity layers tailored explicitly for dark rooms and down-tempo structural listening loops.</p>
-                        <div class="audio-player-module">
-                            <audio controls><source src="track2.mp3" type="audio/mpeg"></audio>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 3 -->
-                    <div class="audio-slide">
-                        <span class="slide-meta">03 // Dancefloor Pulse</span>
-                        <h2>High-Energy Club Beat</h2>
-                        <p>Heavy dynamic low-end weight balanced meticulously to drive modern sound systems on festivals floors.</p>
-                        <div class="audio-player-module">
-                            <audio controls><source src="track3.mp3" type="audio/mpeg"></audio>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 4 -->
-                    <div class="audio-slide">
-                        <span class="slide-meta">04 // Reimagined Edition</span>
-                        <h2>Exclusive Remix Cut</h2>
-                        <p>A hybrid design blending complex synthesized modules with acoustic architectural foundations.</p>
-                        <div class="audio-player-module">
-                            <audio controls><source src="track4.mp3" type="audio/mpeg"></audio>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 5 -->
-                    <div class="audio-slide">
-                        <span class="slide-meta">05 // Raw Concept</span>
-                        <h2>Unreleased Studio Project</h2>
-                        <p>Experimental arrangements directly exported from the ongoing production environment at ommusiceye laboratory.</p>
-                        <div class="audio-player-module">
-                            <audio controls><source src="track5.mp3" type="audio/mpeg"></audio>
-                        </div>
-                    </div>
-
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="showcase-container">
+            
+            <!-- TRACK HERO SECTION -->
+            <div class="track-hero">
+                <div class="img-wrapper">
+                    <img src="om-photo.jpeg" alt="Shweta Custom Sample" class="track-img">
+                </div>
+                <div class="track-details">
+                    <h4>Exclusive Custom Track</h4>
+                    <h1>Shweta Custom Sample Song</h1>
+                    <div class="divider-line"></div>
+                    <p style="color: #94a3b8; font-size: 15px;">Produced & Mixed by <strong style="color: #fff;">Om</strong> • 2026 Premium Release</p>
                 </div>
             </div>
+
+            <!-- AUDIO PLAYER BOX WITH DARK YELLOW THEME -->
+            <div class="audio-player-box">
+                <div class="player-header">
+                    <i class="fas fa-headphones"></i> <span>Listen to Premium Sample</span>
+                </div>
+                <audio controls>
+                    <source src="track1.mp4" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- PRICING & COMMERCIAL LICENSING CARD -->
+            <div class="pricing-card">
+                <div class="price-header">
+                    <div>
+                        <h2 style="font-size: 24px; font-weight: 800;">Full Commercial License</h2>
+                        <p style="color: #94a3b8; font-size: 14px; margin-top: 6px;">Get complete ownership & high-quality master WAV track</p>
+                    </div>
+                    <div class="price-tag">₹3,200</div>
+                </div>
+
+                <div class="license-title">Included Rights & License:</div>
+                <ul class="license-features">
+                    <li><i class="fas fa-check-circle"></i> 100% Royalty-Free Use (Keep all your revenue)</li>
+                    <li><i class="fas fa-check-circle"></i> Lifetime Social Media Distribution License</li>
+                    <li><i class="fas fa-check-circle"></i> High-Quality Studio Master file export</li>
+                    <li><i class="fas fa-check-circle"></i> Complete Monetization allowed</li>
+                </ul>
+
+                <!-- SOCIAL LOGOS WITH TEXT -->
+                <div class="social-licensing-logos">
+                    <p>Allowed Platforms:</p>
+                    <i class="fab fa-instagram" title="Instagram Reels"></i>
+                    <i class="fab fa-youtube" title="YouTube Videos"></i>
+                    <i class="fab fa-tiktok" title="Shorts/TikTok"></i>
+                    <i class="fab fa-facebook" title="Facebook Ads"></i>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 
-    <!-- PAGE 3: STUDIO HEADQUARTERS VIEW -->
-    <section id="page-studio" class="page-view">
-        <h2 class="section-headline">Studio <span>HQ</span></h2>
-        <div class="map-wrapper-box">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15282225.79979123!2d73.7250244!3d20.770321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </section>
-
-    <!-- PREMIUM RE-DESIGN FOOTER -->
-    <footer>
-        <p>&copy; 2026 ommusiceye. Engineered with Premium Audio Aesthetics.</p>
-    </footer>
-
-    <!-- INTERACTIVE APP VIEW CONTROLLER ENGINE -->
-    <script>
-        // Multi-page System Tab Swapping Engine
-        function switchPage(pageId) {
-            // Disengage all views safely
-            document.querySelectorAll('.page-view').forEach(view => {
-                view.classList.remove('active-page');
-            });
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Target view initialization triggers
-            const targetsPage = document.getElementById(`page-${pageId}`);
-            const targetsNav = document.getElementById(`btn-${pageId}`);
-            
-            if(targetsPage && targetsNav) {
-                targetsPage.classList.add('active-page');
-                targetsNav.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        // Showcase Carousel Controller Script
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.audio-slide');
-        const slideContainer = document.getElementById('slideTrack');
-
-        function moveSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide >= slides.length) {
-                currentSlide = 0;
-            }
-            if (currentSlide < 0) {
-                currentSlide = slides.length - 1;
-            }
-            slideContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-    </script>
 </body>
 </html>
