@@ -3,90 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ommusiceye | Premium Audio Store</title>
+    <title>ommusiceye | Premium Pastel Pop Audio Deck</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- CUTE LIGHT PASTEL & BOLD BORDER VARIABLES --- */
+        :root {
+            --light-blue: #E0F2FE;
+            --pastel-yellow: #FEF08A;
+            --soft-pink: #FCE7F3;
+            --cloud-bg: #F8FAFC;
+            --bold-black: #1E293B;
+            --cute-border: 3px solid #1E293B;
+            --panel-shadow: 6px 6px 0px #1E293B;
+            --hover-shadow: 10px 10px 0px #1E293B;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Quicksand', 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: var(--cloud-bg);
+            color: var(--bold-black);
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* LEFT SIDEBAR */
+        /* --- BACKGROUND GRADIENT (NO BLACK AT ALL) --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 25%, var(--light-blue) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, var(--pastel-yellow) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        /* Cute Grid Dots */
+        .grid-matrix {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(30, 41, 59, 0.08) 2px, transparent 2px);
+            background-size: 24px 24px;
+            z-index: -1;
+        }
+
+        /* --- LEFT NAVIGATION DECK (PASTEL POP) --- */
         .sidebar {
             width: 320px;
-            background-color: #000000;
+            background-color: #FFFFFF;
             padding: 40px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-right: 2px solid rgba(255, 193, 7, 0.2);
+            border-right: var(--cute-border);
             position: fixed;
             height: 100vh;
             z-index: 10;
         }
 
-        /* LOGO CONTAINER WITH 360° ROTATION */
+        /* LOGO CONTEXT WITH BOLD BLACK BOUNDARY */
         .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
-            border: 2px solid #FFC107;
-            padding: 12px 18px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.25);
-            margin-bottom: 40px;
-            background: rgba(255, 193, 7, 0.02);
-            animation: fadeInDown 0.8s ease-out;
+            border: var(--cute-border);
+            padding: 12px 24px;
+            border-radius: 20px;
+            background: var(--pastel-yellow);
+            box-shadow: var(--panel-shadow);
+            margin-bottom: 45px;
+            width: 100%;
+            justify-content: center;
+            animation: bouncePop 0.8s ease;
         }
 
         .logo-area {
             font-size: 22px;
             font-weight: 900;
-            color: #FFC107;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            color: var(--bold-black);
+            letter-spacing: 0.5px;
         }
 
-        /* 360 Degree Spinning Logo Icon */
         .spinning-logo {
             font-size: 24px;
-            color: #FFC107;
-            animation: spin360 4s linear infinite;
-            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+            color: var(--bold-black);
+            animation: spin360 6s linear infinite;
         }
 
-        .sidebar-widget {
-            background: #181818;
-            border-radius: 16px;
-            padding: 24px;
+        /* BOUNCY NAV TABS WITH BLACK BORDERS */
+        .nav-menu {
             width: 100%;
-            text-align: center;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: auto;
         }
 
-        .sidebar-widget:hover {
-            border: 1px solid rgba(255, 193, 7, 0.4);
+        .nav-item {
+            width: 100%;
+            padding: 16px 22px;
+            background: #FFFFFF;
+            border: var(--cute-border);
+            border-radius: 18px;
+            color: var(--bold-black);
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--panel-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .sidebar-widget h3 {
-            font-size: 14px;
-            margin-bottom: 15px;
-            color: #a3a3a3;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+        .nav-item i {
+            font-size: 18px;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+            background: var(--light-blue);
+        }
+
+        /* Active State Grid Map */
+        .nav-item.active {
+            background: var(--light-blue);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--bold-black);
+        }
+
+        .nav-item.active i {
+            animation: heartBeat 1.2s infinite;
+        }
+
+        /* SIDEBAR WHATSAPP HUB */
+        .sidebar-footer-widget {
+            width: 100%;
+            background: var(--soft-pink);
+            padding: 12px;
+            border-radius: 20px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
         }
 
         .whatsapp-btn {
@@ -94,407 +158,442 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: linear-gradient(135deg, #25D366 0%, #1cbd57 100%);
-            color: white;
+            background: #FFFFFF;
+            color: var(--bold-black);
+            border: var(--cute-border);
             text-decoration: none;
             padding: 14px 20px;
-            border-radius: 30px;
-            font-weight: bold;
+            border-radius: 16px;
+            font-weight: 900;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .whatsapp-btn:hover {
-            transform: scale(1.03);
+            background: var(--pastel-yellow);
+            transform: scale(1.02);
         }
 
-        .qr-container img {
-            width: 180px;
-            height: 180px;
-            border-radius: 12px;
-            border: 3px solid rgba(255, 255, 255, 0.08);
-            margin-bottom: 12px;
-            object-fit: contain;
-            background: white; /* Agaye background clear dikhe */
-        }
 
-        /* MAIN CONTENT AREA - SMOOTH BLENDED GRADIENT (BLUE TO BLACK) */
+        /* --- MAIN DYNAMIC CANVAS --- */
         .main-content {
             margin-left: 320px;
             flex: 1;
-            padding: 50px;
-            background: linear-gradient(transparent, #121212 55%), #1d3557; 
-            background-attachment: fixed;
+            padding: 60px;
+            position: relative;
         }
 
-        .showcase-container {
-            max-width: 950px;
+        /* --- MULTI-PAGE CONTROLLER VIEW --- */
+        .page-tab-content {
+            display: none;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .page-tab-content.active-page {
             display: flex;
             flex-direction: column;
             gap: 35px;
         }
 
-        /* TRACK HERO SECTION */
-        .track-hero {
+        /* --- 🎬 RAAVAN MOVIE STYLE CUBE ASSEMBLY (LIGHT EDITION) 🎬 --- */
+        .assemble-effect {
+            animation: lightBlockAssemble 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* CUTE HERO CARD DESIGN */
+        .track-hero-cube {
             display: flex;
-            gap: 40px;
+            gap: 45px;
             align-items: center;
-            background: rgba(24, 24, 24, 0.85);
-            padding: 35px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            animation: fadeInUp 0.8s ease-out;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 28px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
         }
 
-        .img-wrapper {
+        .premium-photo-frame {
             position: relative;
-            border-radius: 16px;
-            padding: 6px;
-            background: linear-gradient(135deg, #FFC107, #1d3557);
-            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.2);
-            transition: all 0.4s ease;
+            padding: 8px;
+            background: var(--pastel-yellow);
+            border-radius: 24px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .img-wrapper:hover {
-            transform: scale(1.04) rotate(-1deg);
+        .premium-photo-frame:hover {
+            transform: scale(1.04) rotate(2deg);
+            box-shadow: var(--hover-shadow);
         }
 
         .track-img {
-            width: 260px;
-            height: 260px;
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 16px;
             display: block;
+            border: var(--cute-border);
         }
 
-        .track-details h4 {
-            text-transform: uppercase;
+        .hologram-details h4 {
             font-size: 13px;
-            letter-spacing: 4px;
-            color: #FFC107;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .track-details h1 {
-            font-size: 46px;
+            letter-spacing: 2px;
+            color: #64748B;
+            margin-bottom: 8px;
             font-weight: 800;
-            margin-bottom: 15px;
+        }
+
+        .hologram-details h1 {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--bold-black);
             line-height: 1.2;
-            background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
         }
 
-        .divider-line {
-            height: 3px;
-            width: 100px;
-            background: linear-gradient(90deg, #FFC107, transparent);
+        .cyber-line {
+            height: 6px;
+            width: 120px;
+            background: var(--bold-black);
             margin: 18px 0;
-            border-radius: 2px;
+            border-radius: 10px;
         }
 
-        /* CUSTOM DARK YELLOW AUDIO PLAYER */
-        .audio-player-box {
-            background: rgba(24, 24, 24, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 32px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-            animation: fadeInUp 1s ease-out;
+        /* --- LIGHT PASTEL AUDIO PLAYER RACK --- */
+        .audio-rack-panel {
+            background: #FFFFFF;
+            border: var(--cute-border);
+            padding: 35px;
+            border-radius: 28px;
+            box-shadow: var(--panel-shadow);
         }
 
-        .player-header {
+        .player-title {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 18px;
-            color: #FFC107;
-            font-weight: bold;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+            color: var(--bold-black);
+            font-weight: 900;
+            font-size: 16px;
         }
 
         audio {
             width: 100%;
-            height: 56px;
+            height: 54px;
             border-radius: 30px;
-            background-color: #1a1a1a;
+            border: var(--cute-border);
         }
         
         audio::-webkit-media-controls-panel {
-            background-color: #181818;
-        }
-        audio::-webkit-media-controls-play-button,
-        audio::-webkit-media-controls-mute-button,
-        audio::-webkit-media-controls-timeline,
-        audio::-webkit-media-controls-current-time-display,
-        audio::-webkit-media-controls-time-remaining-display,
-        audio::-webkit-media-controls-volume-slider {
-            filter: invert(80%) sepia(50%) saturate(2000%) hue-rotate(5deg) brightness(105%) contrast(105%);
+            background-color: var(--light-blue);
         }
 
-        /* PRICING & LICENSING CARD */
-        .pricing-card {
-            background: rgba(24, 24, 24, 0.85);
-            border-radius: 24px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
-            animation: fadeInUp 1.2s ease-out;
-            position: relative;
-            overflow: hidden;
+        /* --- DYNAMIC PRICING CARD --- */
+        .matrix-pricing-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 45px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
         }
 
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FFC107, #1d3557);
-        }
-
-        .price-header {
+        .matrix-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 3px dashed var(--bold-black);
             padding-bottom: 25px;
-            margin-bottom: 30px;
-        }
-
-        .price-tag {
-            font-size: 46px;
-            font-weight: 900;
-            color: #FFC107;
-            text-shadow: 0 0 25px rgba(255, 193, 7, 0.3);
-        }
-
-        .license-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 22px;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-
-        .license-features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
             margin-bottom: 35px;
         }
 
-        .license-features li {
+        .cyber-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--bold-black);
+            background: var(--pastel-yellow);
+            padding: 4px 18px;
+            border: var(--cute-border);
+            border-radius: 16px;
+            box-shadow: var(--panel-shadow);
+        }
+
+        .rights-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 40px;
+        }
+
+        .rights-list li {
             display: flex;
             align-items: center;
             gap: 14px;
-            color: #cbd5e1;
+            color: var(--bold-black);
             font-size: 16px;
-            transition: transform 0.2s ease;
+            font-weight: 700;
         }
 
-        .license-features li:hover {
-            transform: translateX(6px);
-            color: #ffffff;
-        }
-
-        .license-features i {
-            color: #FFC107;
+        .rights-list i {
+            color: #3B82F6;
             font-size: 18px;
         }
 
-        /* SOCIAL LOGOS BOX */
-        .social-licensing-logos {
+        /* ULTRA BOUNCY ACTION BUTTON */
+        .proceed-checkout-btn {
             display: flex;
-            gap: 25px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px 30px;
-            border-radius: 14px;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .social-licensing-logos p {
-            font-size: 13px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
-        .social-licensing-logos i {
-            font-size: 24px;
-            color: #94a3b8;
-            transition: all 0.3s ease;
+            gap: 12px;
+            width: 100%;
+            background: var(--pastel-yellow);
+            border: var(--cute-border);
+            color: var(--bold-black);
+            padding: 18px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 17px;
             cursor: pointer;
+            box-shadow: var(--panel-shadow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .social-licensing-logos i:hover {
-            color: #FFC107;
-            transform: scale(1.25);
+        .proceed-checkout-btn:hover {
+            background: var(--light-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
         }
 
-        /* ANIMATIONS DEFINITIONS */
+        /* --- THE SECURE PAYMENT BOX (WITH LOCK-IN QR) --- */
+        .checkout-grid {
+            display: flex;
+            gap: 45px;
+            align-items: center;
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 45px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
+        }
+
+        .qr-secure-block {
+            background: #FFFFFF;
+            padding: 18px;
+            border-radius: 20px;
+            border: var(--cute-border);
+            box-shadow: var(--panel-shadow);
+            animation: bouncePop 0.6s ease;
+        }
+
+        .qr-secure-block img {
+            width: 210px;
+            height: 210px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .checkout-instructions h2 {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--bold-black);
+            margin-bottom: 12px;
+        }
+
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-blue);
+            color: var(--bold-black);
+            border: var(--cute-border);
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+
+        /* --- 🎬 BOUNCY RE-ASSEMBLY KEYFRAMES 🎬 --- */
+        @keyframes lightBlockAssemble {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px) rotate(-2deg);
+            }
+            70% {
+                transform: scale(1.03) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes bouncePop {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.06); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         @keyframes spin360 {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            30% { transform: scale(1.25); }
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 900px) {
-            body {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 2px solid rgba(255, 193, 7, 0.2);
-                padding: 30px 20px;
-            }
-            .main-content {
-                margin-left: 0;
-                padding: 24px;
-            }
-            .track-hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            .track-img {
-                width: 220px;
-                height: 220px;
-                margin: 0 auto;
-            }
-            .track-details h1 {
-                font-size: 34px;
-            }
-            .divider-line {
-                margin: 18px auto;
-            }
+        /* RESPONSIVE CONTROL FIELD Map */
+        @media (max-width: 950px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; position: relative; height: auto; border-right: none; border-bottom: var(--cute-border); padding: 30px 20px; }
+            .main-content { margin-left: 0; padding: 25px; }
+            .track-hero-cube, .checkout-grid { flex-direction: column; text-align: center; padding: 35px 20px; }
+            .track-img { width: 210px; height: 210px; margin: 0 auto; }
+            .rights-list { grid-template-columns: 1fr; gap: 15px; }
+            .hologram-details h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LEFT SIDEBAR -->
+    <!-- LIGHT PATTERN MESH -->
+    <div class="grid-matrix"></div>
+
+    <!-- SIDEBAR PANEL -->
     <div class="sidebar">
-        <!-- Brand Logo with Continuous 360° Rotating Disc Icon -->
         <div class="logo-container">
-            <i class="fas fa-compact-disc spinning-logo"></i>
+            <i class="fas fa-star spinning-logo"></i>
             <div class="logo-area">ommusiceye</div>
         </div>
         
-        <!-- WhatsApp Connect Widget -->
-        <div class="sidebar-widget">
-            <h3>Direct Order</h3>
-            <a href="https://wa.me/917031312989?text=Hi%20Om,%20I%20want%20to%20buy%20Shweta%20Custom%20Song" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-            </a>
+        <!-- Multi-Page Navigation Triggers -->
+        <div class="nav-menu">
+            <div class="nav-item active" onclick="switchPage('showcase', this)">
+                <i class="fas fa-headphones" style="color: #3B82F6;"></i> Audio Engine
+            </div>
+            <div class="nav-item" onclick="switchPage('licensing', this)">
+                <i class="fas fa-crown" style="color: #EAB308;"></i> Licensing Hub
+            </div>
+            <div class="nav-item" onclick="switchPage('checkout', this)">
+                <i class="fas fa-heart" style="color: #EF4444;"></i> Pay Terminal
+            </div>
         </div>
 
-        <!-- Google Pay QR Widget -->
-        <div class="sidebar-widget">
-            <h3>Scan & Pay via GPay</h3>
-            <div class="qr-container">
-                <!-- CORRECTED TO .jpeg EXTENSION HERE -->
-                <img src="qr-code.jpeg" alt="Google Pay QR">
-                <p style="font-size: 12px; color: #a3a3a3; font-weight: 500;">Pay ₹3,200 & send screenshot</p>
-            </div>
+        <div class="sidebar-footer-widget">
+            <a href="https://wa.me/917031312989?text=Hi%20Om,%20I%20want%20to%20buy%20Shweta%20Custom%20Song" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp" style="color: #22C55E;"></i> Chat On Studio
+            </a>
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN INTERFACE CORE -->
     <div class="main-content">
-        <div class="showcase-container">
-            
-            <!-- TRACK HERO SECTION -->
-            <div class="track-hero">
-                <div class="img-wrapper">
-                    <img src="om-photo.jpeg" alt="Shweta Custom Sample" class="track-img">
+        
+        <!-- PAGE 1: ADORABLE HIGH-END AUDIO DECK -->
+        <div id="showcase" class="page-tab-content active-page assemble-effect">
+            <div class="track-hero-cube">
+                <div class="premium-photo-frame">
+                    <img src="om-photo.jpeg" alt="Om Production Studio Cover" class="track-img">
                 </div>
-                <div class="track-details">
-                    <h4>Exclusive Custom Track</h4>
+                <div class="hologram-details">
+                    <h4>✨ PREMIUM AUDIO MASTER</h4>
                     <h1>Shweta Custom Sample Song</h1>
-                    <div class="divider-line"></div>
-                    <p style="color: #94a3b8; font-size: 15px;">Produced & Mixed by <strong style="color: #fff;">Om</strong> • 2026 Premium Release</p>
+                    <div class="cyber-line"></div>
+                    <p style="color: #475569; font-size: 15px; font-weight: 700;">
+                        Beautifully crafted & Mixed by <strong style="color: #000;">Om</strong> • Stereo Fidelity
+                    </p>
                 </div>
             </div>
 
-            <!-- AUDIO PLAYER BOX WITH DARK YELLOW THEME -->
-            <div class="audio-player-box">
-                <div class="player-header">
-                    <i class="fas fa-headphones"></i> <span>Listen to Premium Sample</span>
+            <div class="audio-rack-panel">
+                <div class="player-title">
+                    <i class="fas fa-play-circle"></i> <span>Listen to Sweet Sample Stream</span>
                 </div>
                 <audio controls>
                     <source src="track1.mp4" type="audio/mp4">
-                    Your browser does not support the audio element.
+                    Your web browser engine doesn't support direct playback.
                 </audio>
             </div>
+        </div>
 
-            <!-- PRICING & COMMERCIAL LICENSING CARD -->
-            <div class="pricing-card">
-                <div class="price-header">
+        <!-- PAGE 2: POP RIGHTS MATRIX -->
+        <div id="licensing" class="page-tab-content assemble-effect">
+            <div class="matrix-pricing-card">
+                <div class="matrix-header">
                     <div>
-                        <h2 style="font-size: 24px; font-weight: 800;">Full Commercial License</h2>
-                        <p style="color: #94a3b8; font-size: 14px; margin-top: 6px;">Get complete ownership & high-quality master WAV track</p>
+                        <h2 style="font-size: 26px; font-weight: 900;">Full Commercial Use Rights</h2>
+                        <p style="color: #475569; font-size: 14px; margin-top: 5px;">Complete ownership tracking grid active</p>
                     </div>
-                    <div class="price-tag">₹3,200</div>
+                    <div class="cyber-price">₹3,200</div>
                 </div>
 
-                <div class="license-title">Included Rights & License:</div>
-                <ul class="license-features">
-                    <li><i class="fas fa-check-circle"></i> 100% Royalty-Free Use (Keep all your revenue)</li>
-                    <li><i class="fas fa-check-circle"></i> Lifetime Social Media Distribution License</li>
-                    <li><i class="fas fa-check-circle"></i> High-Quality Studio Master file export</li>
-                    <li><i class="fas fa-check-circle"></i> Complete Monetization allowed</li>
+                <ul class="rights-list">
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> 100% Royalty-Free Rights</li>
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> High-End Master WAV Delivery</li>
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> YouTube Sync Monetization</li>
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> Unlimited Commercial Platforms</li>
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> Lifetime Verification Layer</li>
+                    <li><i class="fas fa-check-circle" style="color: #22C55E;"></i> Global Rights Protection</li>
                 </ul>
 
-                <!-- SOCIAL LOGOS WITH TEXT -->
-                <div class="social-licensing-logos">
-                    <p>Allowed Platforms:</p>
-                    <i class="fab fa-instagram" title="Instagram Reels"></i>
-                    <i class="fab fa-youtube" title="YouTube Videos"></i>
-                    <i class="fab fa-tiktok" title="Shorts/TikTok"></i>
-                    <i class="fab fa-facebook" title="Facebook Ads"></i>
+                <button class="proceed-checkout-btn" onclick="document.querySelectorAll('.nav-item')[2].click();">
+                    Unlock Secure Checkout Station <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- PAGE 3: THE QR TERMINAL STATION -->
+        <div id="checkout" class="page-tab-content assemble-effect">
+            <div class="checkout-grid">
+                <div class="qr-secure-block">
+                    <!-- Securely embedded inside the final white pop layer -->
+                    <img src="qr-code.jpeg" alt="GPay Secure Checkout Box">
+                </div>
+                <div class="checkout-instructions">
+                    <div class="secure-badge"><i class="fas fa-shield-alt"></i> Verified Encryption Channel</div>
+                    <h2 style="margin-top: 15px;">Scan & Initialize Order 🌸</h2>
+                    <p style="color: #475569; font-weight: 600; font-size: 15px; line-height: 1.6;">Open any UPI App (GPay, PhonePe, Paytm). Scan the console element on the left, clear the licensing payload of <strong>₹3,200</strong>, and drop the screenshot over WhatsApp for automated unlock keys.</p>
+                    
+                    <div style="display: flex; gap: 20px; align-items: center; background: var(--light-blue); padding: 15px 25px; border-radius: 16px; border: var(--cute-border);">
+                        <i class="fas fa-lock" style="font-size: 28px; color: var(--bold-black);"></i>
+                        <span style="font-size: 14px; color: var(--bold-black); font-weight: 700;">100% Safe Asset Delivery Network Verified.</span>
+                    </div>
                 </div>
             </div>
-
         </div>
+
     </div>
 
+    <!-- --- JAVASCRIPT RE-ASSEMBLY SWITCH ENGINE --- -->
+    <script>
+        function switchPage(pageId, element) {
+            // Remove active classes
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Activate current element style status
+            element.classList.add('active');
+
+            // Hide old tabs cleanly
+            document.querySelectorAll('.page-tab-content').forEach(page => {
+                page.classList.remove('active-page');
+                page.classList.remove('assemble-effect'); 
+            });
+
+            // Target the clean pastel tab
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.add('active-page');
+            
+            // Force Reflow to re-render bouncy block alignment (Raavan Pop Animation)
+            void targetPage.offsetWidth; 
+            targetPage.classList.add('assemble-effect');
+        }
+    </script>
 </body>
 </html>
