@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>OM MUSIC EYE | Premium Audio Architecture</title>
+    <title>OM MUSIC EYE | Grand Imperial Audio Architecture</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght=300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@200;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-gold: #D4AF37;
-            --brand-dark-gold: #AA7C11;
-            --surface-light: #F4F6F9;
-            --surface-card: #FFFFFF;
-            --text-dark: #1A1A1A;
-            --text-muted: #5A5A5A;
-            --bold-border: 2px solid #1A1A1A;
-            --luxury-shadow: 10px 10px 0px #1A1A1A;
-            --btn-shadow: 6px 6px 0px #1A1A1A;
+            --bg-royal-bright: #fcfbfa;
+            --bg-marble: #ffffff;
+            --bg-gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --royal-blue: #0f2547;
+            --royal-gold: #c5a059;
+            --gold-light: #f3ebd9;
+            --text-dark: #1c1f24;
+            --text-gold: #b38728;
+            --text-muted: #6b7280;
+            --royal-shadow: 0 30px 60px rgba(197, 160, 89, 0.08), 
+                            0 12px 25px rgba(15, 37, 71, 0.03),
+                            inset 0 1px 0px #ffffff;
+            --gold-border: 1px solid rgba(197, 160, 89, 0.3);
+            --gold-border-thick: 2px solid rgba(197, 160, 89, 0.6);
         }
 
         * {
@@ -31,423 +36,558 @@
         }
 
         body {
-            background-color: var(--surface-light);
+            background-color: var(--bg-royal-bright);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .premium-grain-bg {
+        /* Bright Ambient Royal Light Flares */
+        .royal-ambient-glow {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(26, 26, 26, 0.04) 1.5px, transparent 1.5px);
-            background-size: 32px 32px;
+            top: -30%; left: -20%; width: 140%; height: 140%;
+            background: radial-gradient(circle at 10% 20%, rgba(243, 235, 217, 0.6) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(15, 37, 71, 0.03) 0%, transparent 45%),
+                        radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.1) 0%, transparent 60%);
+            z-index: -2;
+            filter: blur(40px);
+        }
+
+        /* Fixed Silk Lattice Grid */
+        .silk-texture-mesh {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(rgba(197, 160, 89, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(197, 160, 89, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -1;
             pointer-events: none;
         }
 
-        header {
-            background: var(--surface-card);
-            border-bottom: var(--bold-border);
-            padding: 20px 40px;
+        /* Imperial Navigation Bar */
+        .imperial-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+            padding: 25px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
         }
 
-        .brand-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 26px;
+        .brand-crest {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-crest i {
+            color: var(--royal-gold);
+            font-size: 22px;
+            animation: crestGlow 3s infinite alternate;
+        }
+
+        .imperial-nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .imperial-nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .imperial-nav-links a:hover {
+            color: var(--royal-blue);
+            background: var(--gold-light);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+        }
+
+        /* Main Courtyard Gallery Frame */
+        .grand-courtyard {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 90px 30px 150px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 140px;
+        }
+
+        .royal-chamber {
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: royalReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Chamber 1: High Gallery Acoustic Display */
+        .gallery-asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .curated-editorial h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 5px;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .curated-editorial h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: var(--royal-blue);
+            margin-bottom: 30px;
+        }
+
+        .curated-editorial p {
+            font-size: 16px;
+            line-height: 1.8;
             color: var(--text-dark);
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .royal-audio-pavilion {
+            background: var(--bg-marble);
+            border: var(--gold-border);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--royal-shadow);
+            position: relative;
+        }
+
+        .royal-audio-pavilion::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0; width: 5px;
+            background: var(--bg-gold-gradient);
+        }
+
+        .pavilion-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .pavilion-title {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--royal-blue);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .brand-logo i {
-            font-size: 16px;
-            color: var(--brand-gold);
-        }
-
-        .quick-scroll-nav {
+        /* Elegant Micro Sound Waveform */
+        .royal-wave {
             display: flex;
-            gap: 20px;
+            align-items: flex-end;
+            gap: 4px;
+            height: 18px;
         }
 
-        .quick-scroll-nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 6px 12px;
-            border: 1px transparent;
-            transition: all 0.2s ease;
+        .wave-column {
+            width: 3px;
+            background-color: var(--royal-gold);
+            border-radius: 2px;
+            animation: royalWaveMotion 0.7s ease-in-out infinite alternate;
         }
-
-        .quick-scroll-nav a:hover {
-            border: 1px solid var(--text-dark);
-            background: var(--surface-light);
-        }
-
-        main {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 40px 24px 100px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 80px;
-        }
-
-        .scrolling-section {
-            width: 100%;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: sectionFadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-        }
-
-        .hero-section-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-text-pillar h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-style: italic;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--brand-dark-gold);
-            margin-bottom: 8px;
-        }
-
-        .hero-text-pillar h1 {
-            font-size: 46px;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .luxury-divider {
-            height: 3px;
-            width: 60px;
-            background: var(--text-dark);
-            margin-bottom: 25px;
-        }
-
-        .hero-text-pillar p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .audio-signature-box {
-            background: var(--surface-card);
-            border: var(--bold-border);
-            padding: 25px;
-            box-shadow: var(--luxury-shadow);
-        }
-
-        .audio-signature-box h3 {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
+        .wave-column:nth-child(2) { animation-delay: 0.15s; height: 14px; }
+        .wave-column:nth-child(3) { animation-delay: 0.35s; height: 18px; }
+        .wave-column:nth-child(4) { animation-delay: 0.05s; height: 9px; }
 
         audio {
             width: 100%;
-            height: 50px;
+            height: 48px;
+            border-radius: 8px;
         }
 
         audio::-webkit-media-controls-panel {
-            background-color: var(--surface-light);
+            background-color: var(--gold-light);
         }
 
-        .showcase-media-frame {
+        .gilded-portrait-frame {
             position: relative;
-            background: var(--text-dark);
-            border: var(--bold-border);
-            box-shadow: var(--luxury-shadow);
+            border-radius: 16px;
+            border: var(--gold-border-thick);
+            padding: 12px;
+            background: var(--bg-marble);
+            box-shadow: var(--royal-shadow);
             aspect-ratio: 1 / 1;
             overflow: hidden;
+            animation: galleryFloat 6s ease-in-out infinite;
         }
 
-        .showcase-media-frame img {
+        .gilded-portrait-frame .inner-img-wrap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gilded-portrait-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 1.2s ease;
         }
 
-        .licensing-card {
-            background: var(--surface-card);
-            border: var(--bold-border);
-            box-shadow: var(--luxury-shadow);
-            padding: 40px;
+        .gilded-portrait-frame:hover img {
+            transform: scale(1.05);
         }
 
-        .card-header {
+        /* Chamber 2: High Imperial Charter & Licensing */
+        .charter-monolith {
+            background: var(--bg-marble);
+            border: var(--gold-border-thick);
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow: var(--royal-shadow);
+            position: relative;
+        }
+
+        .charter-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px dashed rgba(26,26,26,0.15);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 35px;
+            margin-bottom: 45px;
         }
 
-        .card-header h2 {
-            font-family: 'Cormorant Garamond', serif;
+        .charter-header h2 {
+            font-family: 'Cinzel', serif;
             font-size: 32px;
-            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--royal-blue);
         }
 
-        .price-tag {
-            font-size: 42px;
-            font-weight: 900;
-            color: var(--text-dark);
+        .charter-price {
+            font-family: 'Cinzel', serif;
+            font-size: 58px;
+            font-weight: 700;
+            color: var(--text-gold);
+            letter-spacing: -1px;
         }
 
-        .license-content-grid {
+        .charter-layout-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: 1.35fr 0.65fr;
+            gap: 50px;
             align-items: center;
+            margin-bottom: 50px;
         }
 
-        .perks-list {
+        .imperial-manifesto-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 30px;
         }
 
-        .perks-list li {
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.4;
+        .imperial-manifesto-list li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-dark);
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 22px;
         }
 
-        .perks-list i {
-            color: var(--brand-dark-gold);
-            margin-top: 2px;
+        .imperial-manifesto-list i {
+            color: var(--royal-gold);
+            margin-top: 4px;
+            font-size: 20px;
         }
 
-        .license-image-frame {
-            border: var(--bold-border);
-            box-shadow: var(--btn-shadow);
-            background: #FFFFFF;
-            padding: 10px;
+        .imperial-manifesto-list strong {
+            font-family: 'Cinzel', serif;
+            color: var(--royal-blue);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 15px;
+            letter-spacing: 1px;
+        }
+
+        .charter-seal-box {
+            border-radius: 12px;
+            border: var(--gold-border);
+            background: var(--gold-light);
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(197,160,89,0.15);
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 200px;
+            align-items: center;
+            min-height: 260px;
         }
 
-        .license-image-frame img {
+        .charter-seal-box img {
             width: 100%;
             height: auto;
-            max-height: 100%;
-            display: block;
             object-fit: contain;
         }
 
-        .scroll-down-btn {
+        .regal-action-trigger {
             display: block;
             width: 100%;
-            background: var(--text-dark);
-            color: #FFFFFF;
-            border: var(--bold-border);
-            padding: 20px;
-            font-size: 14px;
+            background: var(--royal-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             text-align: center;
             text-decoration: none;
-            box-shadow: var(--btn-shadow);
-            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(15, 37, 71, 0.15);
+            transition: all 0.4s ease;
         }
 
-        .scroll-down-btn:hover {
-            background: #FFF;
-            color: var(--text-dark);
-            box-shadow: 8px 8px 0px var(--brand-gold);
-            transform: translateY(-2px);
+        .regal-action-trigger:hover {
+            background: var(--royal-gold);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.3);
+            transform: translateY(-3px);
         }
 
-        .payment-box {
+        /* Chamber 3: Secured Gold Exchange Gate */
+        .gilded-exchange-terminal {
             display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
-            gap: 40px;
-            background: var(--surface-card);
-            border: var(--bold-border);
-            box-shadow: var(--luxury-shadow);
-            padding: 40px;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: 60px;
+            background: var(--bg-marble);
+            border: var(--gold-border);
+            border-radius: 16px;
+            box-shadow: var(--royal-shadow);
+            padding: 60px;
             align-items: center;
         }
 
-        .qr-wrapper {
-            border: var(--bold-border);
-            box-shadow: var(--btn-shadow);
-            padding: 12px;
-            background: #FFF;
-            max-width: 240px;
+        .ivory-qr-frame {
+            border: var(--gold-border-thick);
+            border-radius: 12px;
+            padding: 16px;
+            background: #ffffff;
+            max-width: 250px;
             margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(197,160,89,0.1);
         }
 
-        .qr-wrapper img {
+        .ivory-qr-frame img {
             width: 100%;
             display: block;
+            border-radius: 4px;
         }
 
-        .payment-details h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
+        .exchange-specs h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 400;
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: var(--royal-blue);
         }
 
-        .payment-details p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-muted);
-            margin-bottom: 25px;
+        .exchange-specs p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 35px;
         }
 
-        .footer-studio-info {
+        .crown-security-badge {
+            font-family: 'Cinzel', serif;
             font-size: 11px;
             font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-dark);
-            border-top: 1px solid rgba(0,0,0,0.1);
-            padding-top: 15px;
+            color: var(--royal-gold);
+            border-top: 2px solid var(--gold-light);
+            padding-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        @keyframes sectionFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animations Framework */
+        @keyframes royalReveal {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .quick-scroll-nav { display: none; }
-            main { padding: 25px 16px 80px 16px; gap: 60px; }
-            .hero-section-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .hero-text-pillar h1 { font-size: 32px; }
-            .luxury-divider { margin: 0 auto 20px auto; }
-            .showcase-media-frame { max-width: 320px; margin: 0 auto; width: 100%; }
-            .card-header { flex-direction: column; gap: 10px; text-align: center; }
-            .license-content-grid { grid-template-columns: 1fr; gap: 30px; }
-            .license-image-frame { max-width: 300px; margin: 0 auto; }
-            .payment-box { grid-template-columns: 1fr; padding: 30px 20px; text-align: center; }
+        @keyframes galleryFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes crestGlow {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes royalWaveMotion {
+            0% { height: 4px; }
+            100% { height: 22px; }
+        }
+
+        @media (max-width: 990px) {
+            .imperial-header { padding: 20px 30px; }
+            .imperial-nav-links { display: none; }
+            .grand-courtyard { padding: 50px 20px; gap: 90px; }
+            .gallery-asymmetric-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .curated-editorial h1 { font-size: 38px; }
+            .gilded-portrait-frame { max-width: 340px; margin: 0 auto; width: 100%; }
+            .charter-header { flex-direction: column; gap: 15px; text-align: center; }
+            .charter-layout-grid { grid-template-columns: 1fr; gap: 40px; }
+            .charter-seal-box { max-width: 320px; margin: 0 auto; }
+            .gilded-exchange-terminal { grid-template-columns: 1fr; padding: 40px 25px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="premium-grain-bg"></div>
+    <div class="royal-ambient-glow"></div>
+    <div class="silk-texture-mesh"></div>
 
-    <header>
-        <div class="brand-logo">
+    <nav class="imperial-header">
+        <div class="brand-crest">
             <i class="fas fa-crown"></i> ommusiceye
         </div>
-        <div class="quick-scroll-nav">
-            <a href="#custom-songs">Audio</a>
-            <a href="#pricing-rights">Licensing</a>
-            <a href="#secure-pay">Checkout</a>
+        <div class="imperial-nav-links">
+            <a href="#acoustic-gallery">The Sound Gallery</a>
+            <a href="#royal-charter">Imperial Charter</a>
+            <a href="#exchange-gate">Secure Portal</a>
         </div>
-    </header>
+    </nav>
 
-    <main>
+    <main class="grand-courtyard">
 
-        <!-- AREA 1: CUSTOM SONG PRODUCTIONS -->
-        <section id="custom-songs" class="scrolling-section">
-            <div class="hero-section-grid">
-                <div class="hero-text-pillar">
-                    <h2>Custom Songs</h2>
-                    <h1>Custom Song Productions</h1>
-                    <div class="luxury-divider"></div>
-                    <p>An elite, custom-tailored sonic piece masterfully composed, mixed, and finalized at Om Production Studio. Crafted utilizing clean professional-grade clarity for dynamic distribution output.</p>
+        <!-- CHAMBER 1: HIGH GALLERY ACOUSTICS -->
+        <section id="acoustic-gallery" class="royal-chamber">
+            <div class="gallery-asymmetric-grid">
+                <div class="curated-editorial">
+                    <h2>Precision Mastercraft Audio</h2>
+                    <h1>Elite Custom Masterpieces</h1>
+                    <p>Enter an uncompromised, custom-tailored realm of luxury sound design. Every asset is masterfully engineered, precision frequency-balanced, and synthesized inside the state-of-the-art Om Production Complex. Handcrafted using ultra-pure clarity frameworks built exclusively for magnificent global digital releases.</p>
                     
-                    <div class="audio-signature-box">
-                        <h3><i class="fas fa-play" style="margin-right: 6px; font-size: 10px;"></i> shweta custom sample song below</h3>
+                    <div class="royal-audio-pavilion">
+                        <div class="pavilion-meta">
+                            <div class="pavilion-title"><i class="fas fa-gem"></i> Shweta Premium Master Audition</div>
+                            <div class="royal-wave">
+                                <div class="wave-column"></div>
+                                <div class="wave-column"></div>
+                                <div class="wave-column"></div>
+                                <div class="wave-column"></div>
+                            </div>
+                        </div>
                         <audio controls controlsList="nodownload">
                             <source src="track1.mp4" type="audio/mp4">
                         </audio>
                     </div>
                 </div>
 
-                <div class="showcase-media-frame">
-                    <img src="om-photo.jpeg" alt="Premium Artwork Cover">
+                <div class="gilded-portrait-frame">
+                    <div class="inner-img-wrap">
+                        <img src="om-photo.jpeg" alt="Grand Architectural Studio Asset Display">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- AREA 2: LICENSING HUB (FIXED PNG FOR LICENSE) -->
-        <section id="pricing-rights" class="scrolling-section">
-            <div class="licensing-card">
-                <div class="card-header">
-                    <h2>Asset Commercial License</h2>
-                    <div class="price-tag">₹3,200</div>
+        <!-- CHAMBER 2: THE IMPERIAL CHARTER & PRIVILEGES -->
+        <section id="royal-charter" class="royal-chamber">
+            <div class="charter-monolith">
+                <div class="charter-header">
+                    <h2>Universal Commercial Master Certificate Matrix</h2>
+                    <div class="charter-price">₹4,200</div>
                 </div>
 
-                <div class="license-content-grid">
+                <div class="charter-layout-grid">
                     <div>
-                        <ul class="perks-list">
-                            <li><i class="fas fa-globe"></i> <strong>Where you can upload this song:</strong> You have full rights to upload and monetize this custom track across all digital platforms including YouTube, Spotify, Apple Music, Instagram Reels, and Facebook.</li>
-                            <li><i class="fas fa-check"></i> Unlimited Royalty-Free Use Global Rights (No Copyright Claims)</li>
-                            <li><i class="fas fa-check"></i> High-Fidelity Studio WAV + Stems Package Included</li>
-                            <li><i class="fas fa-check"></i> 100% Legal Ownership Certificate Issued to Your Name</li>
+                        <ul class="imperial-manifesto-list">
+                            <li>
+                                <i class="fas fa-scroll"></i>
+                                <div>
+                                    <strong>Universal Platform Proclamation</strong>
+                                    You are granted absolute, unrestricted, non-expiring legal rights to distribute, upload, broadcast, and maximize your financial returns from this custom composition on every premier digital framework—including Spotify, Apple Music, YouTube Channels, Tidal, TikTok, Instagram Cinematic Reels, Meta networks, and commercial radio broadcasting ecosystems globally.
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-shield-halved"></i>
+                                <div>
+                                    <strong>Perpetual Protection Framework</strong>
+                                    Enjoy clean, 100% royalty-free legal architecture. Built-in master protections safeguard your streams from any incoming automated copyright claim algorithms permanently.
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-box-open"></i>
+                                <div>
+                                    <strong>Studio Archive Vault Packets</strong>
+                                    Includes instant high-speed configuration paths to download uncompressed studio-grade WAV data structures alongside separated, individual audio stem paths for absolute creative layout freedom.
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     
-                    <!-- REWRITTEN STRIP FOR SECURE PNG LOADING -->
-                    <div class="license-image-frame">
-                        <img src="license.png" alt="Official Studio License Document">
+                    <div class="charter-seal-box">
+                        <img src="license.png" alt="Official Imperial Signed Studio Document Frame">
                     </div>
                 </div>
 
-                <a href="#secure-pay" class="scroll-down-btn">Proceed To Instant Payment</a>
+                <a href="#exchange-gate" class="regal-action-trigger">Acquire Sovereign Commercial Rights</a>
             </div>
         </section>
 
-        <!-- AREA 3: CLEAN VERIFIED PAY HUB -->
-        <section id="secure-pay" class="scrolling-section">
-            <div class="payment-box">
-                <div class="qr-wrapper">
-                    <img src="qr-code.jpeg" alt="UPI Banking Quick Scan QR">
+        <!-- CHAMBER 3: SECURED TRANSACTION EXCHANGE -->
+        <section id="exchange-gate" class="royal-chamber">
+            <div class="gilded-exchange-terminal">
+                <div class="ivory-qr-frame">
+                    <img src="qr-code.jpeg" alt="Secure Royal Gateway Transfer Coordinates">
                 </div>
-                <div class="payment-details">
-                    <h2>Instant Transfer Node</h2>
-                    <p>Scan the verified banking asset interface on the left through any default banking application (GPay, PhonePe, Paytm, or generic UPI). Process the setup balance of <strong>₹3,200</strong>, and seamlessly submit the confirmation transaction stub to our WhatsApp dashboard to dispatch the master copy file track instantly.</p>
+                <div class="exchange-specs">
+                    <h2>Sovereign Asset Transfer Node</h2>
+                    <p>Initialize a secure scan of the corporate gateway coordinate link on the left through any verified elite banking utility (Google Pay Elite, PhonePe Premium, Corporate Paytm Node, or smart UPI infrastructure). Process the fixed asset balance of <strong>₹4,200</strong>, and dispatch the confirmation transaction voucher back to our WhatsApp dispatch desk to permanently unlock the high-fidelity master storage vaults.</p>
                     
-                    <div class="footer-studio-info">
-                        <i class="fas fa-shield-alt"></i> Official Studio Verification Loop Active
+                    <div class="crown-security-badge">
+                        <i class="fas fa-award"></i> High-Tier Studio Royal Link Active & Secured
                     </div>
                 </div>
             </div>
